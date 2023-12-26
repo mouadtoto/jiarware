@@ -39,7 +39,8 @@ class Users extends Controller
             ];
             $logged = $this->userModel->login($data);
             if ($logged) {
-                $this->session($logged);
+                session_start();
+                $_SESSION['id']=$logged['user_id'];
             }
         }
         $check=$this->isLoggedIn();
@@ -54,11 +55,11 @@ class Users extends Controller
         }
 
     }
-    public function session($row){
+    public function session($logged){
         session_start();
-        $_SESSION['id']=$row['user_id'];
-        $_SESSION['email']=$row['user_email'];
-        $_SESSION['name']=$row['user_fullname'];
+        $_SESSION['id']=$logged['user_id'];
+        $_SESSION['email']=$logged['user_email'];
+        $_SESSION['name']=$logged['user_fullname'];
     }
     public function logout(){
         session_start();

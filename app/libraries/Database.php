@@ -49,7 +49,7 @@ class Database{
   }
   public function resultSet(){
     $this->execute();
-    return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+    return $this->stmt->fetchAll(PDO::FETCH_DEFAULT);
   }
   public function single(){
     $this->execute();
