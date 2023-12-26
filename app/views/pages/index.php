@@ -22,7 +22,7 @@
             <div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
         <div class="flex md:w-1/2 justify-center py-10 items-center bg-white hidden" id="loginform">
-            <form class="bg-white" method="post">
+            <form class="bg-white" method="post" action="<?php echo URLROOT;?>users/login">
                 <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
                 <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
                 <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
@@ -35,14 +35,14 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
                     </svg>
-                    <input class="pl-2 outline-none border-none" type="text" name="logpass" id="" placeholder="Password" />
+                    <input class="pl-2 outline-none border-none" type="password" name="logpass" id="" placeholder="Password" />
                 </div>
                 <input type="submit" class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2 cursor-pointer" value="Log In" name="login">
             </form>
         </div>
         <!-- sign up -->
         <div class="flex md:w-1/2 justify-center py-10 items-center bg-white" id="signform">
-            <form class="bg-white" method="post" action="<?php echo URLROOT;?>/users/register">
+            <form class="bg-white" method="post" action="<?php echo URLROOT;?>users/register">
                 <h1 class="text-gray-800 font-bold text-2xl mb-1">Welcome</h1>
                 <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">

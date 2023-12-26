@@ -1,11 +1,24 @@
 <?php
-class Pages extends Controller{
+class Pages extends Controller
+{
     private $userModel;
     public function __construct()
     {
-        $this->userModel = $this->model('User');
     }
-        public function index(){
-            $this->view('pages/index');
+    public function index()
+    {
+        $data = [
+            'title' => 'index',
+            'description' => ''
+        ];
+        $this->view('pages/index', $data);
+    }
+    public function dash()
+    {
+        $data = [
+            'title' => 'dash',
+            'description' => ''
+        ];
+        $this->view('pages/dash', $data);
     }
 }

@@ -53,7 +53,7 @@ class Database{
   }
   public function single(){
     $this->execute();
-    return $this->stmt->fetch(PDO::FETCH_OBJ);
+    return $this->stmt->fetch();
   }
   public function rowCount(){
     return $this->stmt->rowCount();
