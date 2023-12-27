@@ -16,8 +16,8 @@ class Pages extends Controller
     public function dash()
     {
         $data = [
-            'title' => 'dash',
-            'description' => ''
+            'title' => '',
+            'description' => '' 
         ];
         $this->view('pages/dash', $data);
     }
