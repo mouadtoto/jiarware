@@ -173,6 +173,57 @@
             </main>
         </div>
     </div>
+
+    <dh-component id="editpro" class="hidden">
+
+<div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 " id="modal">
+    <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+        <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+            <div class="w-full flex justify-start text-gray-600 mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
+                    <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
+                </svg>
+            </div>
+            <form action="<?php echo URLROOT; ?>projects/addpro" method="post">
+                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Enter Project Info :</h1>
+                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
+                <input id="name" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
+                <input id="name" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
+
+                <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
+                <div class="relative mb-5 mt-2">
+                    <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <rect x="4" y="5" width="16" height="16" rx="2" />
+                            <line x1="16" y1="3" x2="16" y2="7" />
+                            <line x1="8" y1="3" x2="8" y2="7" />
+                            <line x1="4" y1="11" x2="20" y2="11" />
+                            <rect x="8" y="15" width="2" height="2" />
+                        </svg>
+                    </div>
+                    <input id="expiry" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
+                </div>
+                <div class="flex items-center justify-start w-full">
+                    <input name="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+                    <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm close">Cancel</button>
+                </div>
+            </form>
+            <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 close" aria-label="close modal" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+</dh-component>
 </body>
 
 </html>
@@ -195,25 +246,23 @@
     }
     /********************************************* */
     var ownerid = document.getElementById('ownerid').innerText;
-    console.log(parseInt(ownerid));
     ownerid = parseInt(ownerid);
     var response;
     const projectsdiv = document.getElementById('projectsdiv');
     let output = ``;
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '<?php echo URLROOT; ?>Projects/displaypro?ownerid=' + ownerid, true);
+    xhr.open('GET', '<?php echo URLROOT; ?>Projects/displaypro?ownerid=' + ownerid, false);
 
     xhr.onload = function() {
         if (xhr.status == 200 && xhr.readyState == 4) {
             response = JSON.parse(xhr.response);
-            console.log(response);
             for (let i = 0; i < response.length; i++) {
                 output += ` 
     <div class="bg-white items-center shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
-            <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="">
+            <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="...">
         <div class="p-5">
                 <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white">${response[i][1]}</h5>
-                <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white hidden proid">project id:${response[i][0]}</h5>
+                <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white hidden proid">${response[i][0]}</h5>
                 <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white hidden ownerid">project owner:${response[i][5]}</h5>
             <p class="font-normal text-gray-700 mb-3 dark:text-gray-400">status : ${response[i][2]}</p>
             <p class="mt-5"> project description : ${response[i][3]}</p>
@@ -225,11 +274,9 @@
         </div>
        <div class='flex h-[10%] mb-2 justify-between m-3'>
        <svg class='deletepro' xmlns="http://www.w3.org/2000/svg" height="24" width="20" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ff0000" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-       <svg class='updatepro'  xmlns="http://www.w3.org/2000/svg" height="24" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#00ff04" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
+       <svg class='updatepro' xmlns="http://www.w3.org/2000/svg" height="24" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#00ff04" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
        </div>
     </div>
-   
-
 `;
                 projectsdiv.innerHTML += output;
             }
@@ -237,4 +284,30 @@
     };
 
     xhr.send();
+    /************************************************ */
+    const deletepro = document.querySelectorAll('.deletepro');
+    const updatepro = document.querySelectorAll('.updatepro');
+    let eidtpro = document.getElementById('editpro');
+    let proid = document.querySelectorAll('.proid');
+
+    for (let i = 0; i < deletepro.length; i++) {
+        deletepro[i].addEventListener('click', e => {
+            console.log('hello');
+            let id = proid[i].innerText;
+            console.log(id);
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', '<?php echo URLROOT; ?>Projects/deletepro?ownerid=' + ownerid + '&proid=' + id, true);
+
+            xhr.onload = function() {
+                if (xhr.status == 200 && xhr.readyState == 4) {
+                    console.log("deleted");
+                }
+            };
+            xhr.send();
+        });
+        updatepro[i].addEventListener('click' , e=>{
+            eidtpro.classList.remove('hidden');
+        })
+    }
+    
 </script>

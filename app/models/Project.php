@@ -26,5 +26,12 @@ class Project
         $row = $this->db->resultSet();
         return $row;
     }
+    public function delete($proid)
+    {
+        
+        $this->db->query('DELETE FROM projects WHERE project_id = :id');
+        $this->db->bind(':id', $proid);
+        $this->db->execute();
+    }
     
 }
