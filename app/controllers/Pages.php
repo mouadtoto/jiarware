@@ -21,4 +21,12 @@ class Pages extends Controller
         ];
         $this->view('pages/dash', $data);
     }
+    public function task()
+    {
+        $data = [
+            'title' => 'task',
+            'description' => ''
+        ];
+        $this->view('pages/task', $data);
+    }
 }

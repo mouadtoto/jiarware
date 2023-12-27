@@ -48,14 +48,15 @@ class Projects extends Controller
     }
     public function editpro(){
         $data= [
-            'name'=>$_GET['name'],
-            'proid'=>$_GET['proid'],
-            'description'=>$_GET['description'],
-            'deadline'=>$_GET['deadline'],
-            'ownerid'=>$_GET['ownerid']
+            'name'=>$_POST['name'],
+            'proid'=>$_POST['proid'],
+            'description'=>$_POST['desc'],
+            'deadline'=>$_POST['deadline'],
+            'owner'=>$_POST['userid']    
         ];
-        $this->view('pages/editpro',$data);
+        $this->projectModel->update($data);
         $_SESSION['id']=$data['owner'];
         $this->view('pages/dash',$data);
     }
+   
    }

@@ -126,9 +126,9 @@
                             <form action="<?php echo URLROOT; ?>projects/addpro" method="post">
                                 <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Enter Project Info :</h1>
                                 <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
-                                <input id="name" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                                <input id="" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
                                 <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
-                                <input id="name" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                                <input id="" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
                                 <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
 
                                 <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
@@ -143,7 +143,7 @@
                                             <rect x="8" y="15" width="2" height="2" />
                                         </svg>
                                     </div>
-                                    <input id="expiry" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
+                                    <input id="" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
                                 </div>
                                 <div class="flex items-center justify-start w-full">
                                     <input name="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
@@ -174,8 +174,7 @@
         </div>
     </div>
 
-    <dh-component id="editpro" class="hidden">
-
+<dh-component id="editpro" class="hidden">
 <div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 " id="modal">
     <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
         <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
@@ -186,14 +185,14 @@
                     <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
                 </svg>
             </div>
-            <form action="<?php echo URLROOT; ?>projects/addpro" method="post">
-                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Enter Project Info :</h1>
+            <form action="<?php echo URLROOT; ?>projects/editpro" method="post">
+                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit Project Info :</h1>
                 <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
                 <input id="name" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
-                <input id="name" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                <label for="prodesc" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
+                <input id="prodesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                <input id="proid" value="" name="proid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border " placeholder="" />
                 <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
-
                 <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
                 <div class="relative mb-5 mt-2">
                     <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
@@ -213,7 +212,7 @@
                     <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm close">Cancel</button>
                 </div>
             </form>
-            <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 close" aria-label="close modal" role="button">
+            <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 " id="close" aria-label="close modal" role="button">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" />
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -261,13 +260,13 @@
     <div class="bg-white items-center shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="...">
         <div class="p-5">
-                <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white">${response[i][1]}</h5>
+                <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white name">${response[i][1]}</h5>
                 <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white hidden proid">${response[i][0]}</h5>
                 <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white hidden ownerid">project owner:${response[i][5]}</h5>
             <p class="font-normal text-gray-700 mb-3 dark:text-gray-400">status : ${response[i][2]}</p>
-            <p class="mt-5"> project description : ${response[i][3]}</p>
-            <p class="mt-5"> project Deadline : ${response[i][4]}</p>
-            <a href="#" class="mt-2 text-white bg-rose-700 hover:bg-rose-700 focus:ring-4 focus:bg-rose-700 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-rose-700 dark:hover:bg-rose-700 dark:focus:ring-blue-800 ">
+            <p class="mt-5 desc"> project description : ${response[i][3]}</p>
+            <p class="mt-5 dead"> project Deadline : ${response[i][4]}</p>
+            <a href="<?php echo URLROOT; ?>tasks/displaytask?proid=${response[i][0]}" class="mt-2 text-white bg-rose-700 hover:bg-rose-700 focus:ring-4 focus:bg-rose-700 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-rose-700 dark:hover:bg-rose-700 dark:focus:ring-blue-800 ">
                 Tasks
                 <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
             </a>
@@ -287,9 +286,17 @@
     /************************************************ */
     const deletepro = document.querySelectorAll('.deletepro');
     const updatepro = document.querySelectorAll('.updatepro');
+    const close = document.getElementById('close');
     let eidtpro = document.getElementById('editpro');
     let proid = document.querySelectorAll('.proid');
-
+    let editproid = document.getElementById('proid');
+    close.addEventListener('click' , e=>{
+        eidtpro.classList.add('hidden');
+    })
+    let editname = document.querySelectorAll('.name');
+    let editdesc =document.querySelectorAll('.desc');
+    let proname = document.getElementById('name');
+    let prodesc =document.getElementById('prodesc');
     for (let i = 0; i < deletepro.length; i++) {
         deletepro[i].addEventListener('click', e => {
             console.log('hello');
@@ -307,7 +314,13 @@
         });
         updatepro[i].addEventListener('click' , e=>{
             eidtpro.classList.remove('hidden');
+            console.log('heloo');
+            proname.value = editname[i].innerText;
+            prodesc.value = editdesc[i].innerText;
+            editproid.value = parseInt(proid[i].innerText);
         })
     }
+    /****************************************************** */
+
     
 </script>
