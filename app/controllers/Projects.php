@@ -6,6 +6,10 @@ class Projects extends Controller
     {
         $this->projectModel = $this->model('Project');
     }
+    public function index(){
+    $data = [];
+        $this->view('pages/dash',$data);
+    }
     public function addpro()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -15,20 +19,14 @@ class Projects extends Controller
                 'deadline' => $_POST['deadline'],
                 'owner' => $_POST['userid']
             ];
-            $this->projectModel->addpro($data);
             $_SESSION['id']=$data['owner'];
-            $data = [
-                'name' => '',
-                'desc' => '',
-                'deadline' => '',
-                'owner' => ''
-            ];
+            $this->projectModel->addpro($data);
             // header('location: ../views/pages/dash.php');
-            $this->view('pages/dash',$data);
+            $this->index();
         }
     }
     public function displaypro(){
-        $ownerid = 0;
+        $ownerid = 1;
         
         if(isset($_GET['ownerid'])){
             $ownerid = (int)$_GET['ownerid'];
@@ -44,7 +42,7 @@ class Projects extends Controller
         $data['owner']=$_GET['ownerid'];
         $this->projectModel->delete($proid);
         $_SESSION['id']=$data['owner'];
-        $this->view('pages/dash',$data);
+        $this->index();
     }
     public function editpro(){
         $data= [
@@ -56,7 +54,7 @@ class Projects extends Controller
         ];
         $this->projectModel->update($data);
         $_SESSION['id']=$data['owner'];
-        $this->view('pages/dash',$data);
+        $this->index();
     }
    
    }

@@ -6,7 +6,7 @@ class Tasks extends Controller
     {
         $this->taskModel = $this->model('Task');
     }
-
+   
     public function displaytask(){
         $proid = 0;
         if(isset($_GET['proid'])){
@@ -17,16 +17,16 @@ class Tasks extends Controller
         return $row ;
     }
     public function addtask(){
-        $data = [
-            'name'=>$_POST['name'],
-            'desc'=>$_POST['desc'],
-            'deadline'=>$_POST['deadline'],
-            'pro'=>(int)$_POST['proid'],
-            'user'=>(int)$_POST['userid']
-        ];
+        $data = [];
+        if(isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['dead']) && isset($_POST['userid']) && isset($_POST['proid'])){
+            $data['name'] = $_POST['name'];
+            $data['desc'] = $_POST['desc'];
+            $data['dead'] = $_POST['dead'];
+            $data['userid'] = $_POST['userid'];
+            $data['proid'] = $_POST['proid'];
+        }
         $this->taskModel->addtask($data);
-        $this->view("pages/task" , $data);   
-        
+        $data = [];        
     }
     public function deletetask(){
         $id=0;
@@ -37,15 +37,15 @@ class Tasks extends Controller
         $this->displaytask();
     }
     public function updatetask(){
-       $data = [
-        'name'=>$_POST['name'],
-        'desc'=>$_POST['desc'],
-        'deadline'=>$_POST['deadline'],
-        'id'=>(int)$_POST['id']
-       ];
+        $data = [];
+        if(isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['dead']) && isset($_POST['taskid']) ){
+            $data['name'] = $_POST['name'];
+            $data['desc'] = $_POST['desc'];
+            $data['dead'] = $_POST['dead'];
+            $data['taskid'] = $_POST['taskid'];
+        }
         $this->taskModel->updatetask($data);
-        $proid = (int)$_POST['proid'];
-        $this->displaytask();
+        $data = []; 
     }
 }
 

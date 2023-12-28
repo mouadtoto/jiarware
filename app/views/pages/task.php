@@ -39,13 +39,13 @@
                                 <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
                             </svg>
                         </div>
-                        <form action="<?php echo URLROOT; ?>tasks/addtask" method="post">
+                        <form action="#" method="post">
                             <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Enter Task Info :</h1>
                             <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Task Name : </label>
-                            <input id="" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                            <input id="addname" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
                             <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Task Description : </label>
-                            <input id="" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                            <input id="" value="<?php echo $_GET['userid']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
+                            <input id="adddesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                            <input id="userid" value="<?php echo $_GET['userid']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
                             <input id="proid" value="<?php echo $_GET['proid']; ?>" name="proid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
 
                             <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
@@ -60,10 +60,10 @@
                                         <rect x="8" y="15" width="2" height="2" />
                                     </svg>
                                 </div>
-                                <input id="" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
+                                <input id="adddead" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
                             </div>
                             <div class="flex items-center justify-start w-full">
-                                <input name="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+                                <input name="" id="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
                             </div>
                         </form>
                         <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 " id="close" aria-label="close modal" role="button">
@@ -73,7 +73,25 @@
                                 <line x1="6" y1="6" x2="18" y2="18" />
                             </svg>
                         </button>
+
+                        <div class="flex w-96 shadow-lg rounded-lg mt-3 hidden" id="successmessage">
+                            <div class="bg-green-600 py-2 px-6 rounded-l-lg flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-white fill-current" viewBox="0 0 16 16" width="20" height="20">
+                                    <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="px-8 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+                                <div>Task Added Succesfully</div>
+                                <button id="closesuccess">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-700" viewBox="0 0 16 16" width="20" height="20">
+                                        <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </dh-component>
@@ -234,54 +252,69 @@
         </div>
 
         <dh-component id="edittask" class="hidden">
-<div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 " id="modal">
-    <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-        <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-            <div class="w-full flex justify-start text-gray-600 mb-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
-                    <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
-                </svg>
-            </div>
-            <form action="<?php echo URLROOT; ?>tasks/updatetask" method="post">
-                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit Task Info :</h1>
-                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Task Name : </label>
-                <input id="name" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                <label for="taskdesc" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Task Description : </label>
-                <input id="taskdesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                <input id="taskid" value="" name="id" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border " placeholder="" />
-                <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
-                <input id="" value="<?php echo $_GET['proid']; ?>" name="proid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
-                <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
-                <div class="relative mb-5 mt-2">
-                    <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <rect x="4" y="5" width="16" height="16" rx="2" />
-                            <line x1="16" y1="3" x2="16" y2="7" />
-                            <line x1="8" y1="3" x2="8" y2="7" />
-                            <line x1="4" y1="11" x2="20" y2="11" />
-                            <rect x="8" y="15" width="2" height="2" />
-                        </svg>
+            <div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 " id="modal">
+                <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+                    <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+                        <div class="w-full flex justify-start text-gray-600 mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
+                                <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
+                            </svg>
+                        </div>
+                        <form action="#" method="post">
+                            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit Task Info :</h1>
+                            <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Task Name : </label>
+                            <input id="editname" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                            <label for="taskdesc" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Task Description : </label>
+                            <input id="editdesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                            <input id="taskid" value="" name="id" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden " placeholder="" />
+                            <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
+                            <input id="" value="<?php echo $_GET['proid']; ?>" name="proid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
+                            <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
+                            <div class="relative mb-5 mt-2">
+                                <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                        <rect x="4" y="5" width="16" height="16" rx="2" />
+                                        <line x1="16" y1="3" x2="16" y2="7" />
+                                        <line x1="8" y1="3" x2="8" y2="7" />
+                                        <line x1="4" y1="11" x2="20" y2="11" />
+                                        <rect x="8" y="15" width="2" height="2" />
+                                    </svg>
+                                </div>
+                                <input id="deadline" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
+                            </div>
+                            <div class="flex items-center justify-start w-full">
+                                <input id="update" name="" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+                            </div>
+                        </form>
+                        <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 " id="closeedit" aria-label="close modal" role="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </button>
+                        <div class="flex w-96 shadow-lg rounded-lg mt-3 hidden" id="editsuccessmessage">
+                            <div class="bg-green-600 py-2 px-6 rounded-l-lg flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-white fill-current" viewBox="0 0 16 16" width="20" height="20">
+                                    <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="px-8 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+                                <div>Task Updated Succesfully</div>
+                                <button id="editclosesuccess">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-700" viewBox="0 0 16 16" width="20" height="20">
+                                        <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <input id="expiry" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
                 </div>
-                <div class="flex items-center justify-start w-full">
-                    <input name="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
-                </div>
-            </form>
-            <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 " id="closeedit" aria-label="close modal" role="button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-            </button>
-        </div>
-    </div>
-</div>
-</dh-component>
+            </div>
+        </dh-component>
 
 
 </body>
@@ -289,16 +322,85 @@
 </html>
 
 <script>
-    let taskform =document.getElementById('taskform');
-    let addtask =document.getElementById('addtask');
-    let close =document.getElementById('close');
-    let deletetask =document.querySelectorAll('.deletepro');  
-    let updatetask =document.querySelectorAll('.updatepro');          
-    let taskid =document.querySelectorAll('.taskid');              
-    let proid =document.getElementById('proid').value;
-    let taskdesc =document.querySelectorAll('.taskdesc');                  
-    
-    let edittask =document.getElementById('edittask');
+    /***********************************add task and bzaf */
+    let proid = document.getElementById('proid').value;
+    let add = document.getElementById('add');
+                   
+
+    add.addEventListener('click', e => {
+        let addname = document.getElementById('addname').value;
+        let adddesc = document.getElementById('adddesc').value;
+        let adddead = document.getElementById('adddead').value;
+        let userid = document.getElementById('userid').value;
+
+        let closesucces = document.getElementById('closesuccess');
+        let successmessage = document.getElementById('successmessage');
+        closesucces.addEventListener('click', e => {
+            successmessage.classList.add('hidden');
+        })
+        e.preventDefault(e);
+        var formData = new FormData();
+        formData.append('name', addname);
+        formData.append('desc', adddesc);
+        formData.append('dead', adddead);
+        formData.append('userid', userid);
+        formData.append('proid', proid);
+
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo URLROOT; ?>Tasks/addtask', true);
+        xhr.onload = function() {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                addname = '';
+                adddesc = '';
+                adddead = '';
+                successmessage.classList.remove('hidden');
+            }
+        };
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(new URLSearchParams(formData));
+    })
+    /****************************************editi hna */
+    let update = document.getElementById('update');
+    update.addEventListener('click', e => {
+        let editname = document.getElementById('editname').value;
+        let editdesc = document.getElementById('editdesc').value;
+        let editdead = document.getElementById('deadline').value;
+        let taskid = document.getElementById('taskid').value;
+        let closesucces = document.getElementById('editclosesuccess');
+        let successmessage = document.getElementById('editsuccessmessage');
+        closesucces.addEventListener('click', e => {
+            successmessage.classList.add('hidden');
+        })
+        e.preventDefault(e);
+        var formData = new FormData();
+        formData.append('name', editname);
+        formData.append('desc', editdesc);
+        formData.append('dead', editdead);
+        formData.append('taskid', taskid);
+        formData.append('proid', proid);
+
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo URLROOT; ?>Tasks/updatetask', true);
+        xhr.onload = function() {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                successmessage.classList.remove('hidden');
+            }
+        };
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(new URLSearchParams(formData));
+    })
+    /**************************************************** */
+    let taskform = document.getElementById('taskform');
+    let addtask = document.getElementById('addtask');
+    let close = document.getElementById('close');
+    let deletetask = document.querySelectorAll('.deletepro');
+    let updatetask = document.querySelectorAll('.updatepro');
+    let taskid = document.querySelectorAll('.taskid');
+    let taskdesc = document.querySelectorAll('.taskdesc');
+
+    let edittask = document.getElementById('edittask');
     addtask.addEventListener('click', e => {
         taskform.classList.remove('hidden');
     })
@@ -307,9 +409,9 @@
     })
     deletetask.forEach((element, index) => {
         element.addEventListener('click', e => {
-            let id =  parseInt(taskid[index].innerText);
+            let id = parseInt(taskid[index].innerText);
             const xhr = new XMLHttpRequest();
-            xhr.open('GET' , '<?php echo URLROOT; ?>Tasks/deletetask?id=' + id + '&proid='+proid,true)
+            xhr.open('GET', '<?php echo URLROOT; ?>Tasks/deletetask?id=' + id + '&proid=' + proid, true)
             xhr.onload = function() {
                 if (xhr.status == 200 && xhr.readyState == 4) {
                     console.log("deleted");
@@ -318,23 +420,23 @@
             xhr.send();
         });
     });
-    
-    
-    document.getElementById('closeedit').addEventListener('click' , e=>{
+
+
+    document.getElementById('closeedit').addEventListener('click', e => {
         edittask.classList.add('hidden');
     })
-let taskname =document.querySelectorAll('.taskname'); 
+    let taskname = document.querySelectorAll('.taskname');
 
-let nametask = document.getElementById('taskdesc');
-updatetask.forEach((element, index) => {
-    element.addEventListener('click', e => {
-        edittask.classList.remove('hidden');
-        let id =  parseInt(taskid[index].innerText);
-        console.log(id);    
-        document.getElementById('taskdesc').value=taskdesc[index].innerText;
-        document.getElementById('taskid').value=id;
-        nametask.value=taskname[index].value;
-        
+    let nametask = document.getElementById('taskdesc');
+    updatetask.forEach((element, index) => {
+        element.addEventListener('click', e => {
+            edittask.classList.remove('hidden');
+            let id = parseInt(taskid[index].innerText);
+            console.log(id);
+            document.getElementById('editdesc').value = taskdesc[index].innerText;
+            document.getElementById('taskid').value = id;
+            nametask.value = taskname[index].value;
+
+        });
     });
-});
 </script>
