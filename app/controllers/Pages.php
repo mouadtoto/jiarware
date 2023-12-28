@@ -19,7 +19,7 @@ class Pages extends Controller
             'title' => '',
             'description' => '' 
         ];
-        $this->view('pages/dash', $data);
+        $this->view('pages/dash');
     }
     public function task()
     {

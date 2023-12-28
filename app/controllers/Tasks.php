@@ -12,10 +12,9 @@ class Tasks extends Controller
         if(isset($_GET['proid'])){
             $proid = (int)$_GET['proid'];
         }
-        $data = [''];
         $row = $this->taskModel->display($proid);
-        $this->view("pages/task" , $data);   
-        echo json_encode($row); 
+        $this->view("pages/task" , $row);   
+        return $row ;
     }
     public function addtask(){
         $data = [
@@ -28,6 +27,25 @@ class Tasks extends Controller
         $this->taskModel->addtask($data);
         $this->view("pages/task" , $data);   
         
+    }
+    public function deletetask(){
+        $id=0;
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+        }
+        $this->taskModel->deletetask($id);
+        $this->displaytask();
+    }
+    public function updatetask(){
+       $data = [
+        'name'=>$_POST['name'],
+        'desc'=>$_POST['desc'],
+        'deadline'=>$_POST['deadline'],
+        'id'=>(int)$_POST['id']
+       ];
+        $this->taskModel->updatetask($data);
+        $proid = (int)$_POST['proid'];
+        $this->displaytask();
     }
 }
 
