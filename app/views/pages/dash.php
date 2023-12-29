@@ -98,12 +98,31 @@
                             </div>
                         </form>
                     </div>
+
+
+                  
                     <div class="ml-4 flex items-center lg:ml-6">
-                        <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" id="addpro">Add Project</button>
+                        <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" id="addproj">Add Project</button>
                     </div>
                 </div>
+              
             </div>
-
+            <div id="added" class="relative flex flex-col sm:flex-row sm:items-center bg-green-100 shadow rounded-md py-5 pl-6 pr-8 sm:pr-6 hidden">
+                        <div class="flex flex-row items-center border-b sm:border-b-0 w-full sm:w-auto pb-4 sm:pb-0">
+                            <div id="closemessage" class="text-green-500">
+                                <svg  class="w-6 sm:w-5 h-6 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="text-sm font-medium ml-3">Project Added Successfully</div>
+                        </div>
+                        <div class="text-sm tracking-wide text-gray-500 mt-4 sm:mt-0 sm:ml-4">Your Project was Added Successful. Please Refresh the page.</div>
+                        <div class="absolute sm:relative sm:top-auto sm:right-auto ml-auto right-4 top-4 text-gray-400 hover:text-gray-800 cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </div>
+                    </div>
             <section id="projectsdiv" class="flex flex-row flex-wrap justify-center gap-5 mt-5">
 
 
@@ -123,13 +142,13 @@
                                     <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
                                 </svg>
                             </div>
-                            <form action="<?php echo URLROOT; ?>projects/addpro" method="post">
+                            <form action="#" method="post">
                                 <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Enter Project Info :</h1>
                                 <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
-                                <input id="" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                                <input id="proname" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
                                 <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
-                                <input id="" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                                <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
+                                <input id="prodesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                                <input id="userid" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
 
                                 <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
                                 <div class="relative mb-5 mt-2">
@@ -143,11 +162,10 @@
                                             <rect x="8" y="15" width="2" height="2" />
                                         </svg>
                                     </div>
-                                    <input id="" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
+                                    <input id="prodead" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
                                 </div>
                                 <div class="flex items-center justify-start w-full">
-                                    <input name="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
-                                    <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm close">Cancel</button>
+                                    <button id="addpro" name="add" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Add Project</button>
                                 </div>
                             </form>
                             <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 close" aria-label="close modal" role="button">
@@ -174,67 +192,67 @@
         </div>
     </div>
 
-<dh-component id="editpro" class="hidden">
-<div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 " id="modal">
-    <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-        <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-            <div class="w-full flex justify-start text-gray-600 mb-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
-                    <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
-                </svg>
-            </div>
-            <form action="<?php echo URLROOT; ?>projects/editpro" method="post">
-                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit Project Info :</h1>
-                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
-                <input id="name" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                <label for="prodesc" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
-                <input id="prodesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                <input id="proid" value="" name="proid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border " placeholder="" />
-                <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
-                <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
-                <div class="relative mb-5 mt-2">
-                    <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <dh-component id="editpro" class="hidden">
+        <div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 " id="modal">
+            <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+                <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+                    <div class="w-full flex justify-start text-gray-600 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" />
-                            <rect x="4" y="5" width="16" height="16" rx="2" />
-                            <line x1="16" y1="3" x2="16" y2="7" />
-                            <line x1="8" y1="3" x2="8" y2="7" />
-                            <line x1="4" y1="11" x2="20" y2="11" />
-                            <rect x="8" y="15" width="2" height="2" />
+                            <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
+                            <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
                         </svg>
                     </div>
-                    <input id="expiry" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
+                    <form action="<?php echo URLROOT; ?>projects/editpro" method="post">
+                        <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit Project Info :</h1>
+                        <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
+                        <input id="name" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                        <label for="prodesc" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
+                        <input id="prodesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                        <input id="proid" value="" name="proid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border " placeholder="" />
+                        <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
+                        <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
+                        <div class="relative mb-5 mt-2">
+                            <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <rect x="4" y="5" width="16" height="16" rx="2" />
+                                    <line x1="16" y1="3" x2="16" y2="7" />
+                                    <line x1="8" y1="3" x2="8" y2="7" />
+                                    <line x1="4" y1="11" x2="20" y2="11" />
+                                    <rect x="8" y="15" width="2" height="2" />
+                                </svg>
+                            </div>
+                            <input id="expiry" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
+                        </div>
+                        <div class="flex items-center justify-start w-full">
+                            <input name="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+                            <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm close">Cancel</button>
+                        </div>
+                    </form>
+                    <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 " id="close" aria-label="close modal" role="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
                 </div>
-                <div class="flex items-center justify-start w-full">
-                    <input name="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
-                    <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm close">Cancel</button>
-                </div>
-            </form>
-            <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 " id="close" aria-label="close modal" role="button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-            </button>
+            </div>
         </div>
-    </div>
-</div>
-</dh-component>
+    </dh-component>
 </body>
 
 </html>
 
 
 <script>
-    const addpro = document.getElementById('addpro');
+    const addpro = document.getElementById('addproj');
     const profrom = document.getElementById('proform');
     const closefrom = document.querySelectorAll('.close');
-    addpro.addEventListener("click", add);
+    addpro.addEventListener("click", addproj);
 
-    function add() {
+    function addproj() {
         profrom.classList.remove('hidden');
         for (let i = 0; i < closefrom.length; i++) {
             closefrom[i].addEventListener('click', e => {
@@ -243,6 +261,50 @@
             })
         }
     }
+    /*********************add project hna******************************* */
+
+
+    let add = document.getElementById('addpro');
+    let closemesage = document.getElementById('closemessage');
+    let added = document.getElementById('added');
+
+    add.addEventListener('click', e => {
+        let proname = document.getElementById('proname').value;
+        let prodesc = document.getElementById('prodesc').value;
+        let prodead = document.getElementById('prodead').value;
+        let userid = document.getElementById('userid').value;
+        e.preventDefault(e);
+        var formData = new FormData();
+        formData.append('name', proname);
+        formData.append('desc', prodesc);
+        formData.append('dead', prodead);
+        formData.append('userid', userid);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo URLROOT; ?>projects/addpro', true);
+        xhr.onload = function() {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+  
+                added.classList.remove('hidden');
+                setTimeout(function(){
+                    added.classList.add('hidden');
+                },3000);
+                profrom.classList.add('hidden');
+            }
+        };
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(new URLSearchParams(formData));
+    })
+
+
+
+
+
+
+
+
+
+    /****************************************************************** */
     /********************************************* */
     var ownerid = document.getElementById('ownerid').innerText;
     ownerid = parseInt(ownerid);
@@ -258,7 +320,7 @@
             for (let i = 0; i < response.length; i++) {
                 output += ` 
     <div class="bg-white items-center shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
-            <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="...">
+            <img class="rounded-t-lg" src="../public/img/project.png" alt="...">
         <div class="p-5">
                 <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white name">${response[i][1]}</h5>
                 <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white hidden proid">${response[i][0]}</h5>
@@ -272,8 +334,8 @@
             </a>
         </div>
        <div class='flex h-[10%] mb-2 justify-between m-3'>
-       <svg class='deletepro' xmlns="http://www.w3.org/2000/svg" height="24" width="20" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ff0000" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-       <svg class='updatepro' xmlns="http://www.w3.org/2000/svg" height="24" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#00ff04" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
+       <svg class='deletepro cursor-pointer' xmlns="http://www.w3.org/2000/svg" height="24" width="20" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ff0000" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+       <svg class='updatepro cursor-pointer' xmlns="http://www.w3.org/2000/svg" height="24" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#00ff04" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
        </div>
     </div>
 `;
@@ -290,13 +352,13 @@
     let eidtpro = document.getElementById('editpro');
     let proid = document.querySelectorAll('.proid');
     let editproid = document.getElementById('proid');
-    close.addEventListener('click' , e=>{
+    close.addEventListener('click', e => {
         eidtpro.classList.add('hidden');
     })
     let editname = document.querySelectorAll('.name');
-    let editdesc =document.querySelectorAll('.desc');
+    let editdesc = document.querySelectorAll('.desc');
     let proname = document.getElementById('name');
-    let prodesc =document.getElementById('prodesc');
+    let prodesc = document.getElementById('prodesc');
     for (let i = 0; i < deletepro.length; i++) {
         deletepro[i].addEventListener('click', e => {
             console.log('hello');
@@ -312,15 +374,12 @@
             };
             xhr.send();
         });
-        updatepro[i].addEventListener('click' , e=>{
+        updatepro[i].addEventListener('click', e => {
             eidtpro.classList.remove('hidden');
-            console.log('heloo');
             proname.value = editname[i].innerText;
             prodesc.value = editdesc[i].innerText;
             editproid.value = parseInt(proid[i].innerText);
         })
     }
     /****************************************************** */
-
-    
 </script>

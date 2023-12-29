@@ -12,21 +12,20 @@ class Projects extends Controller
     }
     public function addpro()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $data = [];
+        if(isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['dead']) && isset($_POST['userid'])){
             $data = [
                 'name' => $_POST['name'],
                 'desc' => $_POST['desc'],
-                'deadline' => $_POST['deadline'],
-                'owner' => $_POST['userid']
+                'dead' => $_POST['dead'],
+                'userid' => $_POST['userid']
             ];
-            $_SESSION['id']=$data['owner'];
             $this->projectModel->addpro($data);
-            // header('location: ../views/pages/dash.php');
-            $this->index();
+            $data = [];
         }
     }
     public function displaypro(){
-        $ownerid = 1;
+        $ownerid = 0;
         
         if(isset($_GET['ownerid'])){
             $ownerid = (int)$_GET['ownerid'];

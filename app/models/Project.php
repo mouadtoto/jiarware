@@ -13,8 +13,8 @@ class Project
 
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':pro_desc', $data['desc']);
-        $this->db->bind(':deadline', $data['deadline']);
-        $this->db->bind(':owner', $data['owner']);
+        $this->db->bind(':deadline', $data['dead']);
+        $this->db->bind(':owner', $data['userid']);
         $this->db->execute();
     }
     public function display($ownerid)
