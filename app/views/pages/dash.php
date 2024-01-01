@@ -66,12 +66,6 @@
                                 </svg>
                                 Projects
                             </a>
-                            <a href="<?php echo URLROOT; ?>stats" class="bg-gray-900 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md" aria-current="page">
-                            <svg class="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                Stats
-                            </a>
                             <a href="<?php echo URLROOT; ?>users/logout" class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                                 <svg class="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -104,31 +98,110 @@
                             </div>
                         </form>
                     </div>
-
-
-                  
-                    <div class="ml-4 flex items-center lg:ml-6">
+                    <div class="ml-4 w-[15%] flex items-center justify-between lg:ml-6">
+                        <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" id="stats">Stats</button>
                         <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" id="addproj">Add Project</button>
                     </div>
+
                 </div>
-              
+
             </div>
             <div id="added" class="relative flex flex-col sm:flex-row sm:items-center bg-green-100 shadow rounded-md py-5 pl-6 pr-8 sm:pr-6 hidden">
-                        <div class="flex flex-row items-center border-b sm:border-b-0 w-full sm:w-auto pb-4 sm:pb-0">
-                            <div id="closemessage" class="text-green-500">
-                                <svg  class="w-6 sm:w-5 h-6 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <div class="text-sm font-medium ml-3">Project Added Successfully</div>
-                        </div>
-                        <div class="text-sm tracking-wide text-gray-500 mt-4 sm:mt-0 sm:ml-4">Your Project was Added Successful. Please Refresh the page.</div>
-                        <div class="absolute sm:relative sm:top-auto sm:right-auto ml-auto right-4 top-4 text-gray-400 hover:text-gray-800 cursor-pointer">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </div>
+                <div class="flex flex-row items-center border-b sm:border-b-0 w-full sm:w-auto pb-4 sm:pb-0">
+                    <div id="closemessage" class="text-green-500">
+                        <svg class="w-6 sm:w-5 h-6 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                     </div>
+                    <div class="text-sm font-medium ml-3">Project Added Successfully</div>
+                </div>
+                <div class="text-sm tracking-wide text-gray-500 mt-4 sm:mt-0 sm:ml-4">Your Project was Added Successful. Please Refresh the page.</div>
+                <div class="absolute sm:relative sm:top-auto sm:right-auto ml-auto right-4 top-4 text-gray-400 hover:text-gray-800 cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </div>
+            </div>
+
+
+
+            <div id="statsdiv" class="flex justify-center bg-gray-100 py-10 p-14 hidden">
+                <!---== First Stats Container ====--->
+                <?php $userid =$_SESSION['id'];
+                $user = new Users();
+                $row = $user->statpro($userid); ?>
+                <div class="container mx-auto pr-4">
+                    <div class="w-72 bg-white max-w-xs mx-auto rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+                        <div class="h-20 bg-red-400 flex items-center justify-between">
+                            <p class="mr-0 text-white text-lg pl-5">Total Projects</p>
+                        </div>
+                        <div class="flex justify-between px-5 pt-6 mb-2 text-sm text-gray-600">
+                            <p>TOTAL</p>
+                        </div>
+                        <p class="py-4 text-3xl ml-5"><?php 
+                        echo $row ? $row : 0;
+                         ?></p>
+                        <!-- <hr > -->
+                    </div>
+                </div>
+                <!---== First Stats Container ====--->
+
+                <!---== Second Stats Container ====--->
+                <div class="container mx-auto pr-4">
+                    <div class="w-72 bg-white max-w-xs mx-auto rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+                        <div class="h-20 bg-blue-500 flex items-center justify-between">
+                            <p class="mr-0 text-white text-lg pl-5">Total Tasks</p>
+                        </div>
+                        <div class="flex justify-between px-5 pt-6 mb-2 text-sm text-gray-600">
+                            <p>TOTAL</p>
+                        </div>
+                        <p class="py-4 text-3xl ml-5"><?php 
+                        $row = $user->stattask($userid);
+                        echo $row ? $row : 0;
+                         ?></p>
+                        <!-- <hr > -->
+                    </div>
+                </div>
+                <!---== Second Stats Container ====--->
+
+                <!---== Third Stats Container ====--->
+                <div class="container mx-auto pr-4">
+                    <div class="w-72 bg-white max-w-xs mx-auto rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+                        <div class="h-20 bg-purple-400 flex items-center justify-between">
+                            <p class="mr-0 text-white text-lg pl-5">Active Tasks</p>
+                        </div>
+                        <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
+                            <p>TOTAL</p>
+                        </div>
+                        <p class="py-4 text-3xl ml-5"><?php 
+                        $row = $user->total_actv_task($userid);
+                        echo $row ? $row : 0;
+                         ?></p>
+                        <!-- <hr > -->
+                    </div>
+                </div>
+                <!---== Third Stats Container ====--->
+
+                <!---== Fourth Stats Container ====--->
+                <div class="container mx-auto">
+                    <div class="w-72 bg-white max-w-xs mx-auto rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+                        <div class="h-20 bg-purple-900 flex items-center justify-between">
+                            <p class="mr-0 text-white text-lg pl-5">Finished Tasks</p>
+                        </div>
+                        <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
+                            <p>TOTAL</p>
+                        </div>
+                        <p class="py-4 text-3xl ml-5"><?php 
+                        $row = $user->total_done_task($userid);
+                        echo $row ? $row : 0;
+                        $_SESSION['id'] = $userid ; 
+                         ?></p>
+                        <!-- <hr > -->
+                    </div>
+                </div>
+                <!---== Fourth Stats Container ====--->
+            </div>
+
             <section id="projectsdiv" class="flex flex-row flex-wrap justify-center gap-5 mt-5">
 
 
@@ -138,50 +211,49 @@
 
             <dh-component id="proform" class="hidden">
 
-                <div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 " id="modal">
-                    <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-                        <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                            <div class="w-full flex justify-start text-gray-600 mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
-                                    <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
-                                </svg>
-                            </div>
-                            <form action="#" method="post">
-                                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Enter Project Info :</h1>
-                                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
-                                <input id="proname" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
-                                <input id="prodesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                                <input id="userid" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
 
-                                <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
-                                <div class="relative mb-5 mt-2">
-                                    <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                            <rect x="4" y="5" width="16" height="16" rx="2" />
-                                            <line x1="16" y1="3" x2="16" y2="7" />
-                                            <line x1="8" y1="3" x2="8" y2="7" />
-                                            <line x1="4" y1="11" x2="20" y2="11" />
-                                            <rect x="8" y="15" width="2" height="2" />
-                                        </svg>
-                                    </div>
-                                    <input id="prodead" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
-                                </div>
-                                <div class="flex items-center justify-start w-full">
-                                    <button id="addpro" name="add" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Add Project</button>
-                                </div>
-                            </form>
-                            <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 close" aria-label="close modal" role="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <line x1="18" y1="6" x2="6" y2="18" />
-                                    <line x1="6" y1="6" x2="18" y2="18" />
-                                </svg>
-                            </button>
+                <div role="alert" class="container fixed w-[60%] h-[60%] top-[20%] left-[20%]  z-10">
+                    <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+                        <div class="w-full flex justify-start text-gray-600 mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
+                                <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
+                            </svg>
                         </div>
+                        <form action="#" method="post">
+                            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Enter Project Info :</h1>
+                            <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
+                            <input id="proname" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                            <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
+                            <input id="prodesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                            <input id="userid" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
+
+                            <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
+                            <div class="relative mb-5 mt-2">
+                                <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                        <rect x="4" y="5" width="16" height="16" rx="2" />
+                                        <line x1="16" y1="3" x2="16" y2="7" />
+                                        <line x1="8" y1="3" x2="8" y2="7" />
+                                        <line x1="4" y1="11" x2="20" y2="11" />
+                                        <rect x="8" y="15" width="2" height="2" />
+                                    </svg>
+                                </div>
+                                <input id="prodead" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
+                            </div>
+                            <div class="flex items-center justify-start w-full">
+                                <button id="addpro" name="add" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Add Project</button>
+                            </div>
+                        </form>
+                        <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 close" aria-label="close modal" role="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </dh-component>
@@ -199,54 +271,54 @@
     </div>
 
     <dh-component id="editpro" class="hidden">
-        <div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 " id="modal">
-            <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-                <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                    <div class="w-full flex justify-start text-gray-600 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
-                            <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
-                        </svg>
-                    </div>
-                    <form action="<?php echo URLROOT; ?>projects/editpro" method="post">
-                        <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit Project Info :</h1>
-                        <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
-                        <input id="name" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                        <label for="prodesc" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
-                        <input id="prodesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
-                        <input id="proid" value="" name="proid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border " placeholder="" />
-                        <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
-                        <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
-                        <div class="relative mb-5 mt-2">
-                            <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <rect x="4" y="5" width="16" height="16" rx="2" />
-                                    <line x1="16" y1="3" x2="16" y2="7" />
-                                    <line x1="8" y1="3" x2="8" y2="7" />
-                                    <line x1="4" y1="11" x2="20" y2="11" />
-                                    <rect x="8" y="15" width="2" height="2" />
-                                </svg>
-                            </div>
-                            <input id="expiry" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
-                        </div>
-                        <div class="flex items-center justify-start w-full">
-                            <input name="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
-                            <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm close">Cancel</button>
-                        </div>
-                    </form>
-                    <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 " id="close" aria-label="close modal" role="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <line x1="18" y1="6" x2="6" y2="18" />
-                            <line x1="6" y1="6" x2="18" y2="18" />
-                        </svg>
-                    </button>
+
+        <div role="alert" class="container fixed w-[60%] h-[60%] top-[20%] left-[20%]  z-10">
+            <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+                <div class="w-full flex justify-start text-gray-600 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="52" height="52" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" />
+                        <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
+                        <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
+                    </svg>
                 </div>
+                <form action="<?php echo URLROOT; ?>projects/editpro" method="post">
+                    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Edit Project Info :</h1>
+                    <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Name : </label>
+                    <input id="name" name="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                    <label for="prodesc" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Project Description : </label>
+                    <input id="prodesc" name="desc" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="" />
+                    <input id="proid" value="" name="proid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden " placeholder="" />
+                    <input id="" value="<?php echo $_SESSION['id']; ?>" name="userid" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border hidden" placeholder="" />
+                    <label for="expiry" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">DeadLine : </label>
+                    <div class="relative mb-5 mt-2">
+                        <div class="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <rect x="4" y="5" width="16" height="16" rx="2" />
+                                <line x1="16" y1="3" x2="16" y2="7" />
+                                <line x1="8" y1="3" x2="8" y2="7" />
+                                <line x1="4" y1="11" x2="20" y2="11" />
+                                <rect x="8" y="15" width="2" height="2" />
+                            </svg>
+                        </div>
+                        <input id="expiry" name="deadline" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" />
+                    </div>
+                    <div class="flex items-center justify-start w-full">
+                        <input name="add" value="Submit" type="submit" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+                        <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm close">Cancel</button>
+                    </div>
+                </form>
+                <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600 " id="close" aria-label="close modal" role="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" />
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
             </div>
         </div>
     </dh-component>
+
 </body>
 
 </html>
@@ -290,11 +362,11 @@
         xhr.open('POST', '<?php echo URLROOT; ?>projects/addpro', true);
         xhr.onload = function() {
             if (xhr.status == 200 && xhr.readyState == 4) {
-  
+
                 added.classList.remove('hidden');
-                setTimeout(function(){
+                setTimeout(function() {
                     added.classList.add('hidden');
-                },3000);
+                }, 3000);
                 profrom.classList.add('hidden');
             }
         };
@@ -388,4 +460,18 @@
         })
     }
     /****************************************************** */
+
+    let stats = document.getElementById('stats');
+    let statsdiv = document.getElementById('statsdiv');
+    let clicked = false;
+
+    stats.addEventListener('click', e => {
+        clicked = !clicked;
+
+        if (clicked) {
+            statsdiv.classList.remove('hidden');
+        } else {
+            statsdiv.classList.add('hidden');
+        }
+    });
 </script>
