@@ -7,5 +7,56 @@ define('DB_NAME', 'jiraware') ;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 define('APPROOT', dirname(dirname(__FILE__))) ;
 define('URLROOT', 'http://localhost/jiarware/') ;

@@ -25,6 +25,13 @@ class Project
         $row = $this->db->resultSet();
         return $row;
     }
+    public function displaypro($data)
+    {
+        $this->db->query('SELECT * FROM projects WHERE project_owner = :owner');
+        $this->db->bind(':owner', $data['userid']);
+        $row = $this->db->resultSet();
+        return $row;
+    }
     public function delete($proid)
     {
 

@@ -35,13 +35,18 @@ class User
         $this->db->bind(':email', $data['email']);
 
         $row = $this->db->single();
-        $hashedpass=$row['user_pass'];
+        $hashedpass = $row['user_pass'];
         if (password_verify($data['pass'], $hashedpass)) {
-           return $row;
-        }else{
+            return $row;
+        } else {
             echo false;
         }
-
     }
-    
+    public function search($title)
+    {
+        $this->db->query('SELECT * FROM tasks WHERE task_name = :title OR task_name LIKE :title');
+        $this->db->bind(':title', $title);
+        $row = $this->db->single();
+        return $row;
+    }
 }

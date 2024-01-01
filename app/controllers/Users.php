@@ -80,4 +80,44 @@ class Users extends Controller
           return false;
         }
       }
+      
+      public function search()
+{
+    $title = '';
+    if (isset($_POST['search'])) {
+        $title = $_POST['search'];
+    }
+
+    $response = $this->userModel->search($title);
+
+    if ($response) {
+        ?>
+        <div class='mt-4'>
+            <h1 class='text-lg text-gray-700 font-semibold hover:underline cursor-pointer'>
+                <?php echo htmlspecialchars($response['task_name']); ?>
+            </h1>
+            <p class='mt-4 text-md text-gray-600'>
+                <?php echo htmlspecialchars($response['task_desc']); ?>
+            </p>
+            <div class='flex justify-between items-center'>
+                <div class='mt-4 flex items-center space-x-4 py-6'>
+                    <div class='text-sm font-semibold'>
+                        <span class='font-normal'>
+                            <?php echo htmlspecialchars($response['task_deadline']); ?>
+                        </span>
+                    </div>
+                </div>
+                <div class='py-4 px-16 bg-yellow-400 rounded-full h-4 w-4 flex items-center justify-center text-1xl text-white mt-4 shadow-lg cursor-pointer'><?php echo htmlspecialchars($response['task_status']); ?></div>
+            </div>
+        </div>
+        <?php
+    } else {
+        echo "No task was found";
+    }
 }
+
+public function stats(){
+    $this->view('stats');
+}
+   
+    }

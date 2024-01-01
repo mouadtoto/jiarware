@@ -29,8 +29,9 @@ class Task
         $this->db->execute();
     }
     public function updatetask($data){
-        $this->db->query('UPDATE tasks SET task_name=:name , task_desc=:desc , task_deadline = :deadline WHERE task_id = :id');
+        $this->db->query('UPDATE tasks SET task_name=:name , task_status =:status , task_desc=:desc , task_deadline = :deadline  WHERE task_id = :id');
         $this->db->bind(':name', $data['name']);
+        $this->db->bind(':status', $data['status']);
         $this->db->bind(':desc', $data['desc']);
         $this->db->bind(':deadline', $data['dead']);
         $this->db->bind(':id', $data['taskid']);
