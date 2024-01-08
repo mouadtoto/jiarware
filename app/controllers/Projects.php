@@ -32,7 +32,6 @@ class Projects extends Controller
         }   
         $row = $this->projectModel->display($ownerid);
         echo json_encode($row); 
-        // $this->index();
     }
     public function deletepro(){
         $proid = 0;

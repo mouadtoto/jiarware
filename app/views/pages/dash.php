@@ -6,19 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/v5-font-face.min.css" integrity="sha512-DG+gORwHSOHlIRwrUl2peOlG9vcxDg8qnbI1WkCfttaERikRSgrRoDeDa1PK4uZD24IJwAeKb6TuQk+/15b66A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
     <h1 id="ownerid"><?php echo $_SESSION['id']; ?></h1>
+
+
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+
+
+
+
     <div class="min-h-full flex">
         <div class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
 
             <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
             <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-800">
                 <div class="absolute top-0 right-0 -mr-12 pt-2">
-                    <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <button id="mbv" type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                         <span class="sr-only">Close sidebar</span>
                         <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -124,83 +132,18 @@
             </div>
 
 
-
-            <div id="statsdiv" class="flex justify-center bg-gray-100 py-10 p-14 hidden">
-                <!---== First Stats Container ====--->
-                <?php $userid =$_SESSION['id'];
-                $user = new Users();
-                $row = $user->statpro($userid); ?>
-                <div class="container mx-auto pr-4">
-                    <div class="w-72 bg-white max-w-xs mx-auto rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
-                        <div class="h-20 bg-red-400 flex items-center justify-between">
-                            <p class="mr-0 text-white text-lg pl-5">Total Projects</p>
-                        </div>
-                        <div class="flex justify-between px-5 pt-6 mb-2 text-sm text-gray-600">
-                            <p>TOTAL</p>
-                        </div>
-                        <p class="py-4 text-3xl ml-5"><?php 
-                        echo $row ? $row : 0;
-                         ?></p>
-                        <!-- <hr > -->
+            <section id="statsdiv" class="hidden flex  flex-col justify-center antialiased bg-gray-100 text-gray-600 min-h-screen">
+                <div class="max-w-3xl mx-auto p-4 sm:px-6 h-full">
+                    <div class="flex flex-col col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-gray-200">
+                        <header class="px-5 py-4 border-b border-gray-100 flex items-center">
+                            <h2 class="font-semibold text-gray-800">Analytics</h2>
+                        </header>
                     </div>
+                    <div class="flex flex-col col-span-full xl:col-span-8 bg-slate-800  rounded-sm border border-gray-200">
+                    <canvas id="mychart" width="400" height="300"></canvas>
                 </div>
-                <!---== First Stats Container ====--->
-
-                <!---== Second Stats Container ====--->
-                <div class="container mx-auto pr-4">
-                    <div class="w-72 bg-white max-w-xs mx-auto rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
-                        <div class="h-20 bg-blue-500 flex items-center justify-between">
-                            <p class="mr-0 text-white text-lg pl-5">Total Tasks</p>
-                        </div>
-                        <div class="flex justify-between px-5 pt-6 mb-2 text-sm text-gray-600">
-                            <p>TOTAL</p>
-                        </div>
-                        <p class="py-4 text-3xl ml-5"><?php 
-                        $row = $user->stattask($userid);
-                        echo $row ? $row : 0;
-                         ?></p>
-                        <!-- <hr > -->
-                    </div>
                 </div>
-                <!---== Second Stats Container ====--->
-
-                <!---== Third Stats Container ====--->
-                <div class="container mx-auto pr-4">
-                    <div class="w-72 bg-white max-w-xs mx-auto rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
-                        <div class="h-20 bg-purple-400 flex items-center justify-between">
-                            <p class="mr-0 text-white text-lg pl-5">Active Tasks</p>
-                        </div>
-                        <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
-                            <p>TOTAL</p>
-                        </div>
-                        <p class="py-4 text-3xl ml-5"><?php 
-                        $row = $user->total_actv_task($userid);
-                        echo $row ? $row : 0;
-                         ?></p>
-                        <!-- <hr > -->
-                    </div>
-                </div>
-                <!---== Third Stats Container ====--->
-
-                <!---== Fourth Stats Container ====--->
-                <div class="container mx-auto">
-                    <div class="w-72 bg-white max-w-xs mx-auto rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
-                        <div class="h-20 bg-purple-900 flex items-center justify-between">
-                            <p class="mr-0 text-white text-lg pl-5">Finished Tasks</p>
-                        </div>
-                        <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
-                            <p>TOTAL</p>
-                        </div>
-                        <p class="py-4 text-3xl ml-5"><?php 
-                        $row = $user->total_done_task($userid);
-                        echo $row ? $row : 0;
-                        $_SESSION['id'] = $userid ; 
-                         ?></p>
-                        <!-- <hr > -->
-                    </div>
-                </div>
-                <!---== Fourth Stats Container ====--->
-            </div>
+            </section>
 
             <section id="projectsdiv" class="flex flex-row flex-wrap justify-center gap-5 mt-5">
 
@@ -318,89 +261,83 @@
             </div>
         </div>
     </dh-component>
+    <script>
+        const addpro = document.getElementById('addproj');
+        const profrom = document.getElementById('proform');
+        const closefrom = document.querySelectorAll('.close');
+        addpro.addEventListener("click", addproj);
 
-</body>
+        function addproj() {
+            profrom.classList.remove('hidden');
+            for (let i = 0; i < closefrom.length; i++) {
+                closefrom[i].addEventListener('click', e => {
 
-</html>
-
-
-<script>
-    const addpro = document.getElementById('addproj');
-    const profrom = document.getElementById('proform');
-    const closefrom = document.querySelectorAll('.close');
-    addpro.addEventListener("click", addproj);
-
-    function addproj() {
-        profrom.classList.remove('hidden');
-        for (let i = 0; i < closefrom.length; i++) {
-            closefrom[i].addEventListener('click', e => {
-
-                profrom.classList.add('hidden');
-            })
+                    profrom.classList.add('hidden');
+                })
+            }
         }
-    }
-    /*********************add project hna******************************* */
+        /*********************add project hna******************************* */
 
 
-    let add = document.getElementById('addpro');
-    let closemesage = document.getElementById('closemessage');
-    let added = document.getElementById('added');
+        let add = document.getElementById('addpro');
+        let closemesage = document.getElementById('closemessage');
+        let added = document.getElementById('added');
 
-    add.addEventListener('click', e => {
-        let proname = document.getElementById('proname').value;
-        let prodesc = document.getElementById('prodesc').value;
-        let prodead = document.getElementById('prodead').value;
-        let userid = document.getElementById('userid').value;
-        e.preventDefault(e);
-        var formData = new FormData();
-        formData.append('name', proname);
-        formData.append('desc', prodesc);
-        formData.append('dead', prodead);
-        formData.append('userid', userid);
+        add.addEventListener('click', e => {
+            let proname = document.getElementById('proname').value;
+            let prodesc = document.getElementById('prodesc').value;
+            let prodead = document.getElementById('prodead').value;
+            let userid = document.getElementById('userid').value;
+            e.preventDefault(e);
+            var formData = new FormData();
+            formData.append('name', proname);
+            formData.append('desc', prodesc);
+            formData.append('dead', prodead);
+            formData.append('userid', userid);
 
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '<?php echo URLROOT; ?>projects/addpro', true);
+            xhr.onload = function() {
+                if (xhr.status == 200 && xhr.readyState == 4) {
+
+                    added.classList.remove('hidden');
+                    setTimeout(function() {
+                        added.classList.add('hidden');
+                    }, 3000);
+                    profrom.classList.add('hidden');
+                }
+            };
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(new URLSearchParams(formData));
+        })
+
+
+
+/**************************** */
+
+
+
+
+
+/****************************************************************** */
+/********************************************* */
+var ownerid = document.getElementById('ownerid').innerText;
+ownerid = parseInt(ownerid);
+        var response;
+        const projectsdiv = document.getElementById('projectsdiv');
+        let output = ``;
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', '<?php echo URLROOT; ?>projects/addpro', true);
+        xhr.open('GET', '<?php echo URLROOT; ?>Projects/displaypro?ownerid=' + ownerid, false);
+
         xhr.onload = function() {
             if (xhr.status == 200 && xhr.readyState == 4) {
-
-                added.classList.remove('hidden');
-                setTimeout(function() {
-                    added.classList.add('hidden');
-                }, 3000);
-                profrom.classList.add('hidden');
-            }
-        };
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send(new URLSearchParams(formData));
-    })
-
-
-
-
-
-
-
-
-
-    /****************************************************************** */
-    /********************************************* */
-    var ownerid = document.getElementById('ownerid').innerText;
-    ownerid = parseInt(ownerid);
-    var response;
-    const projectsdiv = document.getElementById('projectsdiv');
-    let output = ``;
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', '<?php echo URLROOT; ?>Projects/displaypro?ownerid=' + ownerid, false);
-
-    xhr.onload = function() {
-        if (xhr.status == 200 && xhr.readyState == 4) {
-            response = JSON.parse(xhr.response);
-            for (let i = 0; i < response.length; i++) {
-                output += ` 
+                response = JSON.parse(xhr.response);
+                for (let i = 0; i < response.length; i++) {
+                    output += ` 
     <div class="bg-white items-center shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg" src="../public/img/project.png" alt="...">
         <div class="p-5">
-                <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white name">${response[i][1]}</h5>
+        <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white name">${response[i][1]}</h5>
                 <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white hidden proid">${response[i][0]}</h5>
                 <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white hidden ownerid">project owner:${response[i][5]}</h5>
             <p class="font-normal text-gray-700 mb-3 dark:text-gray-400">status : ${response[i][2]}</p>
@@ -411,67 +348,87 @@
                 <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
             </a>
         </div>
-       <div class='flex h-[10%] mb-2 justify-between m-3'>
+        <div class='flex h-[10%] mb-2 justify-between m-3'>
        <svg class='deletepro cursor-pointer' xmlns="http://www.w3.org/2000/svg" height="24" width="20" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ff0000" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
        <svg class='updatepro cursor-pointer' xmlns="http://www.w3.org/2000/svg" height="24" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#00ff04" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
        </div>
-    </div>
-`;
-                projectsdiv.innerHTML += output;
-            }
-        }
-    };
-
-    xhr.send();
-    /************************************************ */
-    const deletepro = document.querySelectorAll('.deletepro');
-    const updatepro = document.querySelectorAll('.updatepro');
-    const close = document.getElementById('close');
-    let eidtpro = document.getElementById('editpro');
-    let proid = document.querySelectorAll('.proid');
-    let editproid = document.getElementById('proid');
-    close.addEventListener('click', e => {
-        eidtpro.classList.add('hidden');
-    })
-    let editname = document.querySelectorAll('.name');
-    let editdesc = document.querySelectorAll('.desc');
-    let proname = document.getElementById('name');
-    let prodesc = document.getElementById('prodesc');
-    for (let i = 0; i < deletepro.length; i++) {
-        deletepro[i].addEventListener('click', e => {
-            console.log('hello');
-            let id = proid[i].innerText;
-            console.log(id);
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', '<?php echo URLROOT; ?>Projects/deletepro?ownerid=' + ownerid + '&proid=' + id, true);
-
-            xhr.onload = function() {
-                if (xhr.status == 200 && xhr.readyState == 4) {
-                    console.log("deleted");
+       </div>
+       `;
+                    projectsdiv.innerHTML += output;
                 }
-            };
-            xhr.send();
-        });
-        updatepro[i].addEventListener('click', e => {
-            eidtpro.classList.remove('hidden');
-            proname.value = editname[i].innerText;
-            prodesc.value = editdesc[i].innerText;
-            editproid.value = parseInt(proid[i].innerText);
+            }
+        };
+        
+        xhr.send();
+        /************************************************ */
+        const deletepro = document.querySelectorAll('.deletepro');
+        const updatepro = document.querySelectorAll('.updatepro');
+        const close = document.getElementById('close');
+        let eidtpro = document.getElementById('editpro');
+        let proid = document.querySelectorAll('.proid');
+        let editproid = document.getElementById('proid');
+        close.addEventListener('click', e => {
+            eidtpro.classList.add('hidden');
         })
-    }
-    /****************************************************** */
-
-    let stats = document.getElementById('stats');
-    let statsdiv = document.getElementById('statsdiv');
-    let clicked = false;
-
-    stats.addEventListener('click', e => {
-        clicked = !clicked;
-
-        if (clicked) {
-            statsdiv.classList.remove('hidden');
-        } else {
-            statsdiv.classList.add('hidden');
+        let editname = document.querySelectorAll('.name');
+        let editdesc = document.querySelectorAll('.desc');
+        let proname = document.getElementById('name');
+        let prodesc = document.getElementById('prodesc');
+        for (let i = 0; i < deletepro.length; i++) {
+            deletepro[i].addEventListener('click', e => {
+                console.log('hello');
+                let id = proid[i].innerText;
+                console.log(id);
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '<?php echo URLROOT; ?>Projects/deletepro?ownerid=' + ownerid + '&proid=' + id, true);
+                
+                xhr.onload = function() {
+                    if (xhr.status == 200 && xhr.readyState == 4) {
+                        console.log("deleted");
+                    }
+                };
+                xhr.send();
+            });
+            updatepro[i].addEventListener('click', e => {
+                eidtpro.classList.remove('hidden');
+                proname.value = editname[i].innerText;
+                prodesc.value = editdesc[i].innerText;
+                editproid.value = parseInt(proid[i].innerText);
+            })
         }
-    });
-</script>
+        /****************************************************** */
+
+        let stats = document.getElementById('stats');
+        let statsdiv = document.getElementById('statsdiv');
+        let clicked = false;
+        
+        stats.addEventListener('click', e => {
+            clicked = !clicked;
+            console.log('hello');
+            if (clicked) {
+                statsdiv.classList.remove('hidden');
+            } else {
+                statsdiv.classList.add('hidden');
+            }
+        });
+        
+        // let mbv = document.getElementById('mbv');
+        // mbv.addEventListener("click", e => {
+
+        // })
+        // let mychart = document.getElementById('mychart').getContext('2d');
+        //         let cryptochart = new Chart(mychart, {
+        //             type: 'line',
+        //             data: {
+        //                 labels: labelcoins,
+        //                 datasets: [{
+        //                     label: 'Coins',
+        //                     data: datacoins
+        //                 }]
+        //             },
+        //             options: {}
+        //         });
+    </script>
+</body>
+
+</html>

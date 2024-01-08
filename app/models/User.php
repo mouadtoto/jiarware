@@ -63,18 +63,4 @@ class User
         $row = $this->db->single();
         return $row;
     }
-    public function total_act_tasks($userid)
-    {
-        $this->db->query('SELECT COUNT(*) FROM tasks WHERE user = :owner AND task_status <> "Done" ');
-        $this->db->bind(':owner', $userid);
-        $row = $this->db->single();
-        return $row;
-    }
-    public function total_done_task($userid)
-    {
-        $this->db->query('SELECT COUNT(*) FROM tasks WHERE user = :owner AND task_status = "Done" ');
-        $this->db->bind(':owner', $userid);
-        $row = $this->db->single();
-        return $row;
-    }
 }

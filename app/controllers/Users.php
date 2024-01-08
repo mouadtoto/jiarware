@@ -40,7 +40,7 @@ class Users extends Controller
             $logged = $this->userModel->login($data);
             if ($logged) {
                 session_start();
-                $_SESSION['id'] = $logged['user_id'];
+                $_SESSION['id'] = $logged['user_id'];   
             }
         }
         $check = $this->isLoggedIn();
@@ -122,20 +122,11 @@ class Users extends Controller
     {
         $row = $this->userModel->totalpro($userid);
         return $row;
+        die(var_dump($row));
     }
     public function stattask($userid)
     {
         $row = $this->userModel->totaltasks($userid);
-        return $row;
-    }
-    public function total_actv_task($userid)
-    {
-        $row = $this->userModel->total_act_tasks($userid);
-        return $row;
-    }
-    public function total_done_task($userid)
-    {
-        $row = $this->userModel->total_done_task($userid);
         return $row;
     }
 }
