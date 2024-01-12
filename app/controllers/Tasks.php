@@ -55,8 +55,8 @@ class Tasks extends Controller
         if(isset($_POST['userid'])){
             $data['userid'] = (int)$_POST['userid'];
         }
+        session_start();
         $_SESSION['id']= $data['userid'];
-        die(var_dump($_SESSION['id']));
         $this->view('pages/dash');
     }
 }

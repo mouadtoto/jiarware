@@ -121,12 +121,11 @@ class Users extends Controller
     public function statpro($userid)
     {
         $row = $this->userModel->totalpro($userid);
-        return $row;
-        die(var_dump($row));
+        return json_encode($row);
     }
     public function stattask($userid)
     {
         $row = $this->userModel->totaltasks($userid);
-        return $row;
+        return json_encode($row) ;
     }
 }

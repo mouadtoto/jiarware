@@ -27,6 +27,6 @@ class Pages extends Controller
             'title' => 'task',
             'description' => ''
         ];
-        $this->view('pages/task', $data);
+        $this->view('pages/task', $data);    
     }
 }

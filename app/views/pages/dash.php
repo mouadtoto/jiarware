@@ -107,7 +107,6 @@
                         </form>
                     </div>
                     <div class="ml-4 w-[15%] flex items-center justify-between lg:ml-6">
-                        <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" id="stats">Stats</button>
                         <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" id="addproj">Add Project</button>
                     </div>
 
@@ -132,21 +131,41 @@
             </div>
 
 
-            <section id="statsdiv" class="hidden flex  flex-col justify-center antialiased bg-gray-100 text-gray-600 min-h-screen">
-                <div class="max-w-3xl mx-auto p-4 sm:px-6 h-full">
-                    <div class="flex flex-col col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-gray-200">
-                        <header class="px-5 py-4 border-b border-gray-100 flex items-center">
-                            <h2 class="font-semibold text-gray-800">Analytics</h2>
-                        </header>
+
+            <?php
+            require_once('../app/controllers/Users.php');
+            $user = new Users();
+            $statpro = $user->statpro($_SESSION['id']);
+            $stattask = $user->stattask($_SESSION['id']);
+            echo '
+                        <div class="max-w-full mx-4 py-6 sm:mx-auto sm:px-6 lg:px-8">
+    <div class="sm:flex sm:space-x-4">
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+            <div class="bg-white p-5">
+                <div class="sm:flex sm:items-start">
+                    <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                        <h3 class="text-sm leading-6 font-medium text-gray-400">Total Projects</h3>
+                        <p class="text-3xl font-bold text-black">';echo $statpro[12]; echo '</p>
                     </div>
-                    <div class="flex flex-col col-span-full xl:col-span-8 bg-slate-800  rounded-sm border border-gray-200">
-                    <canvas id="mychart" width="400" height="300"></canvas>
                 </div>
+            </div>
+        </div>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+            <div class="bg-white p-5">
+                <div class="sm:flex sm:items-start">
+                    <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                        <h3 class="text-sm leading-6 font-medium text-gray-400">Total tasks</h3>
+                        <p class="text-3xl font-bold text-black">'; echo $stattask[12] ; echo '</p>
+                    </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </div>
+</div>
+                        ';
 
+            ?>
             <section id="projectsdiv" class="flex flex-row flex-wrap justify-center gap-5 mt-5">
-
 
 
 
@@ -313,16 +332,16 @@
 
 
 
-/**************************** */
+        /**************************** */
 
 
 
 
 
-/****************************************************************** */
-/********************************************* */
-var ownerid = document.getElementById('ownerid').innerText;
-ownerid = parseInt(ownerid);
+        /****************************************************************** */
+        /********************************************* */
+        var ownerid = document.getElementById('ownerid').innerText;
+        ownerid = parseInt(ownerid);
         var response;
         const projectsdiv = document.getElementById('projectsdiv');
         let output = ``;
@@ -358,7 +377,7 @@ ownerid = parseInt(ownerid);
                 }
             }
         };
-        
+
         xhr.send();
         /************************************************ */
         const deletepro = document.querySelectorAll('.deletepro');
@@ -381,7 +400,7 @@ ownerid = parseInt(ownerid);
                 console.log(id);
                 const xhr = new XMLHttpRequest();
                 xhr.open('GET', '<?php echo URLROOT; ?>Projects/deletepro?ownerid=' + ownerid + '&proid=' + id, true);
-                
+
                 xhr.onload = function() {
                     if (xhr.status == 200 && xhr.readyState == 4) {
                         console.log("deleted");
@@ -401,7 +420,7 @@ ownerid = parseInt(ownerid);
         let stats = document.getElementById('stats');
         let statsdiv = document.getElementById('statsdiv');
         let clicked = false;
-        
+
         stats.addEventListener('click', e => {
             clicked = !clicked;
             console.log('hello');
@@ -411,7 +430,7 @@ ownerid = parseInt(ownerid);
                 statsdiv.classList.add('hidden');
             }
         });
-        
+
         // let mbv = document.getElementById('mbv');
         // mbv.addEventListener("click", e => {
 

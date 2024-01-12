@@ -20,8 +20,9 @@
             <div class="min-h-screen bg-gray-100 flex items-center justify-center">
             </div>
             <div class="ml-10">
-                <form action="<?php echo URLROOT; ?>tasks/dash">
+                <form method="post" action="<?php echo URLROOT; ?>tasks/dash">
                 <input value="Projects" id="goback" type="submit" class="mx-2 text-sm font-semibold text-indigo-700 cursor-pointer">
+                <input type="text" name="userid" class="hidden" value="<?= $_GET['userid']; ?>">
                 </form>
             </div>
             <button id="addtask" class="flex items-center h-10 px-4 ml-10 text-sm text-black bg-indigo-700 rounded-full focus:outline-none focus:ring">Add Task</button>
